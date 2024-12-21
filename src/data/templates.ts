@@ -14,43 +14,6 @@ const templates: Record<Category, Template[]> = {
 "I understand this call is unexpected. We're local investors who buy properties as-is for cash, and I'd love to learn more about your property if you have just a few minutes."
 
 # INITIAL QUALIFICATION (1-2 minutes)
-"Would you have about 5-7 minutes to answer a few questions about the property? This will help me understand if it might be a good fit for our investment portfolio."
-
-## [If YES]
-"Excellent! Let me get some basic information first."
-
-## [If NO]
-"I completely understand. When would be a better time to have this conversation?"
-
-# CONTACT INFORMATION (2-3 minutes)
-"Before we discuss the property, let me verify a few details:
-
-* Could you confirm your full name?
-* And I have your property address as [ADDRESS] - is that correct?
-* What's the best phone number to reach you?
-* Where would you like me to send additional information by email?"
-
-[pokračování...]`
-    }
-  ],
-  [další části...]
-}
-import { Category, Template } from '@/types'
-
-const templates: Record<Category, Template[]> = {
-  'Wholesaling': [
-    {
-      title: "High-Converting Wholesaling Property Acquisition Script",
-      preview: "To identify motivated sellers and secure wholesale real estate deals through cold calling. Duration: 8-12 minutes",
-      fullScript: `
-# OPENING (0-60 seconds)
-
-"Hi, this is [YOUR NAME] with [COMPANY NAME]. I'm a local real estate investor actively looking to buy properties in [AREA/NEIGHBORHOOD]. I noticed your property at [ADDRESS] and wanted to reach out directly to see if you might consider selling for the right offer?"
-
-## [If they seem hesitant]
-"I understand this call is unexpected. We're local investors who buy properties as-is for cash, and I'd love to learn more about your property if you have just a few minutes."
-
-# INITIAL QUALIFICATION (1-2 minutes)
 
 "Would you have about 5-7 minutes to answer a few questions about the property? This will help me understand if it might be a good fit for our investment portfolio."
 
