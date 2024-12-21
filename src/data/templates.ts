@@ -2,10 +2,10 @@ import { Category, Template } from '@/types'
 
 const templates: Record<Category, Template[]> = {
   'Wholesaling': [
-  {
-    title: "High-Converting Wholesaling Property Acquisition Script",
-    preview: "To identify motivated sellers and secure wholesale real estate deals through cold calling. Duration: 8-12 minutes",
-    fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    {
+      title: "High-Converting Wholesaling Property Acquisition Script",
+      preview: "To identify motivated sellers and secure wholesale real estate deals through cold calling. Duration: 8-12 minutes",
+      fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
 <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">OPENING (0-60 seconds)</h1>
 <p style="margin-bottom: 15px;">
 "Hi, this is [YOUR NAME] with [COMPANY NAME]. I'm a local real estate investor actively looking to buy properties in [AREA/NEIGHBORHOOD]. I noticed your property at [ADDRESS] and wanted to reach out directly to see if you might consider selling for the right offer?"
@@ -120,13 +120,13 @@ When would be the best time for me to come take a look at the property?"
   <li>Add you to our priority buyer list in case our offer increases?</li>
 </ol>
 </div>`
-  }
-]
+    }
+  ],
 'Creative Finance': [
-  {
-    title: "Creative Financing Property Acquisition Script",
-    preview: "To present creative financing solutions and identify sellers open to flexible purchase terms. Duration: 8-12 minutes",
-    fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    {
+      title: "Creative Financing Property Acquisition Script",
+      preview: "To present creative financing solutions and identify sellers open to flexible purchase terms. Duration: 8-12 minutes",
+      fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
 <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">OPENING (0-60 seconds)</h1>
 <p style="margin-bottom: 15px;">
 "Hi, this is [YOUR NAME] with [COMPANY NAME]. I'm a local real estate investor specializing in flexible property purchases in [AREA/NEIGHBORHOOD]. I'm reaching out about your property at [ADDRESS] because we offer unique selling options that many traditional buyers don't."
@@ -250,13 +250,13 @@ Would you be available to meet this week to review these options in detail?"
   <li>Share some case studies of similar successful transactions?</li>
 </ol>
 </div>`
-  }
-]
+    }
+  ],
 'Agent Outreach': [
-  {
-    title: "Real Estate Agent Partnership Development Script",
-    preview: "To build strategic relationships with real estate agents and establish a consistent deal flow pipeline. Duration: 8-12 minutes",
-    fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    {
+      title: "Real Estate Agent Partnership Development Script",
+      preview: "To build strategic relationships with real estate agents and establish a consistent deal flow pipeline. Duration: 8-12 minutes",
+      fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
 <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">OPENING (0-60 seconds)</h1>
 <p style="margin-bottom: 15px;">
 "Hi, this is [YOUR NAME] with [COMPANY NAME]. I'm an active investor in [AREA/NEIGHBORHOOD], and I noticed your strong presence in the market. I wanted to discuss how we might be able to work together to help more of your clients."
@@ -390,13 +390,13 @@ Would you be available [suggest specific day/time] to meet in person?"
 What would be most helpful for you?"
 </p>
 </div>`
-  }
-]
+    }
+  ],
 'Foreclosure': [
-  {
-    title: "Pre-Foreclosure Homeowner Assistance Script",
-    preview: "To help homeowners in foreclosure while creating win-win investment opportunities. Duration: 8-12 minutes",
-    fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
+    {
+      title: "Pre-Foreclosure Homeowner Assistance Script",
+      preview: "To help homeowners in foreclosure while creating win-win investment opportunities. Duration: 8-12 minutes",
+      fullScript: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
 <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">OPENING (0-60 seconds)</h1>
 <p style="margin-bottom: 15px;">
 "Hi, this is [YOUR NAME] with [COMPANY NAME]. I'm reaching out because I understand you might be dealing with a challenging situation with your property at [ADDRESS]."
@@ -533,5 +533,8 @@ Is there anything specific you'd like to know more about?
 "Given your timeline, we should meet today if possible. I can be there at [suggest time] to review your documentation and discuss immediate solutions. Would that work for you?"
 </p>
 </div>`
-  }
-]
+    }
+  ]
+}
+
+export default templates
