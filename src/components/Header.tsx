@@ -71,7 +71,7 @@ export default function Header({
             {title.endsWith('.') ? title.slice(0, -1) : title}
           </h1>
           <p 
-            className="text-[11px] md:text-[10px] sm:text-[9px] font-bold font-montserrat text-gray-600 leading-snug"
+            className="text-[14px] md:text-[10px] sm:text-[9px] font-bold font-montserrat text-gray-600 leading-snug"
             aria-description="Header description"
           >
             {subheadline}
