@@ -1,13 +1,16 @@
 // src/data/templates.ts
 import { Category, Template } from '@/types'
-interface TemplatesObject {
-  [key in Category]: Template[];
-}
 export interface Template {
   id: string;
   name: string;
   content: string;
 }
+
+export interface TemplatesObject {
+  [key in Category]: Template[];
+}
+
+export type Category = 'scripts' | 'performance-goals' | 'extended-status';
 
 const sharedStyles = `
   <style>
@@ -116,10 +119,29 @@ const sharedStyles = `
   </style>`;
 
 export const templates: TemplatesObject = {
-  {
-    id: "wholesaling",
-    name: "Wholesaling Property Acquisition",
-    content: `<!DOCTYPE html>
+  'scripts': [
+    {
+      id: "wholesaling",
+      name: "Wholesaling Property Acquisition",
+      content: `...`
+    },
+    {
+      id: "creative-finance",
+      name: "Creative Financing Property Acquisition",
+      content: `...`
+    },
+    {
+      id: "agent-partnership",
+      name: "Real Estate Agent Partnership",
+      content: `...`
+    },
+    {
+      id: "pre-foreclosure",
+      name: "Pre-Foreclosure Homeowner Assistance",
+      content: `...`
+    }
+  ]
+};
 <html>
 <head>
 ${sharedStyles}
