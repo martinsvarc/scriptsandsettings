@@ -1,5 +1,8 @@
 // src/data/templates.ts
-
+import { Category, Template } from '@/types'
+interface TemplatesObject {
+  [key in Category]: Template[];
+}
 export interface Template {
   id: string;
   name: string;
@@ -112,7 +115,7 @@ const sharedStyles = `
     }
   </style>`;
 
-export const templates: Template[] = [
+export const templates: TemplatesObject = {
   {
     id: "wholesaling",
     name: "Wholesaling Property Acquisition",
