@@ -1,110 +1,125 @@
-<!DOCTYPE html>
+// src/data/templates.ts
+
+export interface Template {
+  id: string;
+  name: string;
+  content: string;
+}
+
+const sharedStyles = `
+  <style>
+    .script-container {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #333;
+    }
+    
+    h1 {
+      font-size: 28px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      color: #1a202c;
+    }
+    
+    h2 {
+      font-size: 24px;
+      color: #2d3748;
+      margin-top: 30px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+    
+    h3 {
+      font-size: 20px;
+      color: #4a5568;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+    
+    .section {
+      margin-bottom: 24px;
+      padding: 0 16px;
+    }
+    
+    .condition {
+      font-style: italic;
+      color: #4a5568;
+      font-weight: 500;
+      margin: 12px 0;
+      padding: 8px 16px;
+      background-color: #f7fafc;
+      border-left: 4px solid #4a5568;
+    }
+    
+    .script-text {
+      margin: 12px 0;
+      line-height: 1.6;
+      padding: 0 16px;
+    }
+    
+    .bullet-list {
+      list-style-type: disc;
+      margin: 12px 0 12px 40px;
+    }
+    
+    .bullet-list li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    
+    .numbered-list {
+      list-style-type: decimal;
+      margin: 12px 0 12px 40px;
+    }
+    
+    .numbered-list li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+  
+    .note {
+      border-left: 4px solid #718096;
+      padding: 8px 16px;
+      margin: 12px 0;
+      font-style: italic;
+      background-color: #f7fafc;
+    }
+    
+    .script-preview {
+      font-style: italic;
+      color: #4a5568;
+      margin-bottom: 24px;
+      padding: 0 16px;
+    }
+    
+    .variable {
+      color: #2b6cb0;
+      font-weight: 600;
+    }
+    
+    .header-time {
+      color: #718096;
+      font-size: 0.9em;
+      font-weight: normal;
+    }
+  
+    .subsection {
+      margin-left: 20px;
+      margin-top: 16px;
+    }
+  </style>`;
+
+export const templates: Template[] = [
+  {
+    id: "wholesaling",
+    name: "Wholesaling Property Acquisition",
+    content: `<!DOCTYPE html>
 <html>
 <head>
-<style>
-  .script-container {
-    font-family: system-ui, -apple-system, sans-serif;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #333;
-  }
-  
-  h1 {
-    font-size: 28px;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: #1a202c;
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #2d3748;
-    margin-top: 30px;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 8px;
-  }
-  
-  h3 {
-    font-size: 20px;
-    color: #4a5568;
-    margin-top: 20px;
-    font-weight: 600;
-  }
-  
-  .section {
-    margin-bottom: 24px;
-    padding: 0 16px;
-  }
-  
-  .condition {
-    font-style: italic;
-    color: #4a5568;
-    font-weight: 500;
-    margin: 12px 0;
-    padding: 8px 16px;
-    background-color: #f7fafc;
-    border-left: 4px solid #4a5568;
-  }
-  
-  .script-text {
-    margin: 12px 0;
-    line-height: 1.6;
-    padding: 0 16px;
-  }
-  
-  .bullet-list {
-    list-style-type: disc;
-    margin: 12px 0 12px 40px;
-  }
-  
-  .bullet-list li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-  }
-  
-  .numbered-list {
-    list-style-type: decimal;
-    margin: 12px 0 12px 40px;
-  }
-  
-  .numbered-list li {
-    margin-bottom: 8px;
-    line-height: 1.5;
-  }
-
-  .note {
-    border-left: 4px solid #718096;
-    padding: 8px 16px;
-    margin: 12px 0;
-    font-style: italic;
-    background-color: #f7fafc;
-  }
-  
-  .script-preview {
-    font-style: italic;
-    color: #4a5568;
-    margin-bottom: 24px;
-    padding: 0 16px;
-  }
-  
-  .variable {
-    color: #2b6cb0;
-    font-weight: 600;
-  }
-  
-  .header-time {
-    color: #718096;
-    font-size: 0.9em;
-    font-weight: normal;
-  }
-
-  .subsection {
-    margin-left: 20px;
-    margin-top: 16px;
-  }
-</style>
+${sharedStyles}
 </head>
 <body>
 <div class="script-container">
@@ -182,6 +197,7 @@
 <div class="script-text">
   "That sounds challenging. How has that been affecting you?"
 </div>
+
 <h2>TIMELINE AND FINANCIAL POSITION <span class="header-time">(7-8 minutes)</span></h2>
 <div class="script-text">
   "If you decided to move forward with selling:"
@@ -227,8 +243,20 @@
   <li>Follow up with you next week to answer any questions?</li>
   <li>Add you to our priority buyer list in case our offer increases?</li>
 </ol>
-
-<!-- Creative Finance Script -->
+</div>
+</body>
+</html>`
+  },
+  {
+    id: "creative-finance",
+    name: "Creative Financing Property Acquisition",
+    content: `<!DOCTYPE html>
+<html>
+<head>
+${sharedStyles}
+</head>
+<body>
+<div class="script-container">
 <h1>Creative Financing Property Acquisition Script</h1>
 <div class="script-preview">
   To present creative financing solutions and identify sellers open to flexible purchase terms. Duration: 8-12 minutes
@@ -271,6 +299,7 @@
   <li>If rented, what's the current monthly rent?</li>
   <li>Have you had any previous experience with owner financing or lease options?</li>
 </ul>
+
 <h2>EXPLORING MOTIVATIONS <span class="header-time">(5-7 minutes)</span></h2>
 <div class="script-text">
   "What's your main goal with the property right now?"
@@ -307,7 +336,20 @@
   <li>You're relieved of payment obligations</li>
   <li>Quick closing possible</li>
 </ul>
-
+</div>
+</body>
+</html>`
+  },
+  {
+    id: "agent-partnership",
+    name: "Real Estate Agent Partnership",
+    content: `<!DOCTYPE html>
+<html>
+<head>
+${sharedStyles}
+</head>
+<body>
+<div class="script-container">
 <h1>Real Estate Agent Partnership Development Script</h1>
 <div class="script-preview">
   To build strategic relationships with real estate agents and establish a consistent deal flow pipeline. Duration: 8-12 minutes
@@ -347,6 +389,20 @@
   <li>Cash offers</li>
   <li>No financing contingencies</li>
 </ul>
+</div>
+</body>
+</html>`
+  },
+  {
+    id: "pre-foreclosure",
+    name: "Pre-Foreclosure Homeowner Assistance",
+    content: `<!DOCTYPE html>
+<html>
+<head>
+${sharedStyles}
+</head>
+<body>
+<div class="script-container">
 <h1>Pre-Foreclosure Homeowner Assistance Script</h1>
 <div class="script-preview">
   To help homeowners in foreclosure while creating win-win investment opportunities. Duration: 8-12 minutes
@@ -421,7 +477,10 @@
 <div class="script-text">
   "Given your timeline, we should meet today if possible. I can be there at <span class="variable">[suggest time]</span> to review your documentation and discuss immediate solutions. Would that work for you?"
 </div>
-
 </div>
 </body>
-</html>
+</html>`
+  }
+];
+
+export default templates;
