@@ -7,6 +7,7 @@
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
+    color: #333;
   }
   
   h1 {
@@ -98,12 +99,15 @@
     font-size: 0.9em;
     font-weight: normal;
   }
+
+  .subsection {
+    margin-left: 20px;
+    margin-top: 16px;
+  }
 </style>
 </head>
 <body>
 <div class="script-container">
-
-<!-- Wholesaling Script -->
 <h1>High-Converting Wholesaling Property Acquisition Script</h1>
 <div class="script-preview">
   To identify motivated sellers and secure wholesale real estate deals through cold calling. Duration: 8-12 minutes
@@ -118,6 +122,7 @@
 <div class="script-text">
   "I understand this call is unexpected. We're local investors who buy properties as-is for cash, and I'd love to learn more about your property if you have just a few minutes."
 </div>
+
 <h2>INITIAL QUALIFICATION <span class="header-time">(1-2 minutes)</span></h2>
 <div class="script-text">
   "Would you have about 5-7 minutes to answer a few questions about the property? This will help me understand if it might be a good fit for our investment portfolio."
@@ -159,6 +164,7 @@
   <li>How would you describe the condition of the roof and foundation?</li>
   <li>Are there any special features I should know about?</li>
 </ul>
+
 <h2>MOTIVATION DISCOVERY <span class="header-time">(5-7 minutes)</span></h2>
 <div class="script-text">
   "Thank you for sharing those details. May I ask what's making you consider selling at this time?"
@@ -176,7 +182,6 @@
 <div class="script-text">
   "That sounds challenging. How has that been affecting you?"
 </div>
-
 <h2>TIMELINE AND FINANCIAL POSITION <span class="header-time">(7-8 minutes)</span></h2>
 <div class="script-text">
   "If you decided to move forward with selling:"
@@ -222,6 +227,8 @@
   <li>Follow up with you next week to answer any questions?</li>
   <li>Add you to our priority buyer list in case our offer increases?</li>
 </ol>
+
+<!-- Creative Finance Script -->
 <h1>Creative Financing Property Acquisition Script</h1>
 <div class="script-preview">
   To present creative financing solutions and identify sellers open to flexible purchase terms. Duration: 8-12 minutes
@@ -251,16 +258,6 @@
 <div class="script-text">
   "I understand. When would be a better time to explore these options?"
 </div>
-<h2>CONTACT INFORMATION <span class="header-time">(2-3 minutes)</span></h2>
-<div class="script-text">
-  "Before we discuss the possibilities, let me verify a few details:"
-</div>
-<ul class="bullet-list">
-  <li>Could you confirm your full name?</li>
-  <li>And I have your property address as <span class="variable">[ADDRESS]</span> - is that correct?</li>
-  <li>What's the best phone number to reach you?</li>
-  <li>Where would you like me to send additional information by email?</li>
-</ul>
 
 <h2>PROPERTY & FINANCIAL SITUATION <span class="header-time">(3-5 minutes)</span></h2>
 <div class="script-text">
@@ -274,7 +271,6 @@
   <li>If rented, what's the current monthly rent?</li>
   <li>Have you had any previous experience with owner financing or lease options?</li>
 </ul>
-
 <h2>EXPLORING MOTIVATIONS <span class="header-time">(5-7 minutes)</span></h2>
 <div class="script-text">
   "What's your main goal with the property right now?"
@@ -312,42 +308,6 @@
   <li>Quick closing possible</li>
 </ul>
 
-<h2>PRICE DISCUSSION <span class="header-time">(8-9 minutes)</span></h2>
-<div class="script-text">
-  "Let's discuss numbers:"
-</div>
-<ul class="bullet-list">
-  <li>What would be your ideal total purchase price?</li>
-  <li>If we did owner financing, what monthly payment would you need?</li>
-  <li>How many years would you be comfortable carrying the financing?</li>
-  <li>What size down payment would you need?</li>
-</ul>
-
-<h2>CLOSING & NEXT STEPS <span class="header-time">(9-10 minutes)</span></h2>
-
-<div class="condition">[If Showing Interest]</div>
-<div class="script-text">
-  "This sounds promising. Here's what I suggest as next steps:"
-</div>
-<ol class="numbered-list">
-  <li>I'll prepare a detailed proposal with multiple options</li>
-  <li>We can meet in person to review the numbers</li>
-  <li>You can choose the structure that works best for you</li>
-  <li>We can close as soon as the paperwork is ready</li>
-</ol>
-<div class="script-text">
-  "Would you be available to meet this week to review these options in detail?"
-</div>
-
-<div class="condition">[If Needs Time]</div>
-<div class="script-text">
-  "I understand this is different from traditional sales and you need time to think about it. Would it be okay if I:"
-</div>
-<ol class="numbered-list">
-  <li>Send you detailed information about each option?</li>
-  <li>Follow up next week to answer any questions?</li>
-  <li>Share some case studies of similar successful transactions?</li>
-</ol>
 <h1>Real Estate Agent Partnership Development Script</h1>
 <div class="script-preview">
   To build strategic relationships with real estate agents and establish a consistent deal flow pipeline. Duration: 8-12 minutes
@@ -362,43 +322,6 @@
 <div class="script-text">
   "I know you're busy, but I work with several agents who send us deals that aren't a good fit for the MLS, and we close quickly with cash. Would you be open to learning more?"
 </div>
-
-<h2>INITIAL QUALIFICATION <span class="header-time">(1-2 minutes)</span></h2>
-<div class="script-text">
-  "Do you have a few minutes to discuss how we might be able to help each other? We're currently buying <span class="variable">[X]</span> properties per month and always pay full commission."
-</div>
-
-<div class="condition">[If YES]</div>
-<div class="script-text">
-  "Great! Let me explain how we typically work with agents."
-</div>
-
-<div class="condition">[If NO]</div>
-<div class="script-text">
-  "No problem. When would be a better time to have this conversation?"
-</div>
-
-<h2>CONTACT VERIFICATION <span class="header-time">(2-3 minutes)</span></h2>
-<div class="script-text">
-  "Just to make sure I have your correct information:"
-</div>
-<ul class="bullet-list">
-  <li>Could you confirm your full name and brokerage?</li>
-  <li>What's the best email to send deal criteria to?</li>
-  <li>What's your preferred phone number for opportunities?</li>
-</ul>
-
-<h2>AGENT EXPERIENCE DISCOVERY <span class="header-time">(3-5 minutes)</span></h2>
-<div class="script-text">
-  "I'd love to learn more about your business:"
-</div>
-<ul class="bullet-list">
-  <li>How long have you been working in this market?</li>
-  <li>What types of listings do you typically handle?</li>
-  <li>Have you worked with investors before?</li>
-  <li>What challenges do you face with hard-to-sell properties?</li>
-  <li>How do you currently handle properties that need significant repairs?</li>
-</ul>
 
 <h2>VALUE PROPOSITION <span class="header-time">(5-7 minutes)</span></h2>
 <div class="script-text">
@@ -424,61 +347,6 @@
   <li>Cash offers</li>
   <li>No financing contingencies</li>
 </ul>
-
-<h2>DEAL CRITERIA <span class="header-time">(7-8 minutes)</span></h2>
-<div class="script-text">
-  "Here's what we typically look for:"
-</div>
-<ul class="bullet-list">
-  <li>Single family homes in <span class="variable">[AREAS]</span></li>
-  <li>Properties needing updates or repairs</li>
-  <li>Motivated sellers</li>
-  <li>Below market opportunities</li>
-  <li>Quick-close situations</li>
-</ul>
-<div class="script-text">
-  "What types of properties do you usually come across that might fit these criteria?"
-</div>
-
-<h2>PROCESS EXPLANATION <span class="header-time">(8-9 minutes)</span></h2>
-<div class="script-text">
-  "Here's how we typically work with agents:"
-</div>
-<ol class="numbered-list">
-  <li>You send us property details and photos</li>
-  <li>We provide a cash offer within 24 hours</li>
-  <li>We can close in as little as 7 days</li>
-  <li>You receive full commission at closing</li>
-  <li>We handle all repairs and updates</li>
-</ol>
-<div class="script-text">
-  "How does this process sound to you?"
-</div>
-
-<h2>CLOSING & NEXT STEPS <span class="header-time">(9-10 minutes)</span></h2>
-
-<div class="condition">[If Showing Interest]</div>
-<div class="script-text">
-  "Great! Let's do this:"
-</div>
-<ol class="numbered-list">
-  <li>I'll send you our buying criteria and process overview</li>
-  <li>You can add me to your list for potential deals</li>
-  <li>We could meet for coffee next week to discuss specific opportunities</li>
-</ol>
-<div class="script-text">
-  "Would you be available <span class="variable">[suggest specific day/time]</span> to meet in person?"
-</div>
-
-<div class="condition">[If Needs Time]</div>
-<div class="script-text">
-  "I understand you need to think about it. May I:"
-</div>
-<ol class="numbered-list">
-  <li>Send you our complete investor package?</li>
-  <li>Share some testimonials from other agents we work with?</li>
-  <li>Follow up next week to answer any questions?</li>
-</ol>
 <h1>Pre-Foreclosure Homeowner Assistance Script</h1>
 <div class="script-preview">
   To help homeowners in foreclosure while creating win-win investment opportunities. Duration: 8-12 minutes
@@ -509,17 +377,6 @@
   "I understand your hesitation. Would it be better to talk another time?"
 </div>
 
-<h2>CONTACT VERIFICATION <span class="header-time">(2-3 minutes)</span></h2>
-<div class="script-text">
-  "Before we discuss your situation, let me confirm a few details:"
-</div>
-<ul class="bullet-list">
-  <li>Am I speaking with <span class="variable">[OWNER NAME]</span>?</li>
-  <li>Is <span class="variable">[ADDRESS]</span> the property in question?</li>
-  <li>What's the best number to reach you?</li>
-  <li>Where can I send you some information about your options?</li>
-</ul>
-
 <h2>SITUATION ASSESSMENT <span class="header-time">(3-5 minutes)</span></h2>
 <div class="script-text">
   "To understand how best to help, could you tell me:"
@@ -531,18 +388,6 @@
   <li>Have you been able to communicate with your lender?</li>
   <li>What attempts have you made to resolve the situation?</li>
   <li>Are you currently living in the property?</li>
-</ul>
-
-<h2>FINANCIAL POSITION <span class="header-time">(5-7 minutes)</span></h2>
-<div class="script-text">
-  "To understand what options might work best:"
-</div>
-<ul class="bullet-list">
-  <li>What's the approximate amount owed on the property?</li>
-  <li>Are there any other liens or judgments?</li>
-  <li>What's your rough estimate of the property's value?</li>
-  <li>Are you currently employed?</li>
-  <li>Have you considered bankruptcy or loan modification?</li>
 </ul>
 
 <h2>PRESENTING SOLUTIONS <span class="header-time">(7-8 minutes)</span></h2>
@@ -571,43 +416,7 @@
   <li>Time to rebuild your financial situation</li>
 </ul>
 
-<h2>TIMELINE DISCUSSION <span class="header-time">(8-9 minutes)</span></h2>
-<div class="script-text">
-  "Let's talk about timing:"
-</div>
-<ul class="bullet-list">
-  <li>When is the next important deadline?</li>
-  <li>Have you received a sale date?</li>
-  <li>How quickly do you need to make a decision?</li>
-  <li>What would be your ideal timeline to resolve this?</li>
-</ul>
-
-<h2>CLOSING & NEXT STEPS <span class="header-time">(9-10 minutes)</span></h2>
-
-<div class="condition">[If Showing Interest]</div>
-<div class="script-text">
-  "I know this is a lot to consider, but here's what we can do next:"
-</div>
-<ol class="numbered-list">
-  <li>I can meet with you tomorrow to review your documentation</li>
-  <li>We'll create a specific plan for your situation</li>
-  <li>We can stop the foreclosure process quickly</li>
-  <li>You'll know all your options before making any decisions</li>
-</ol>
-<div class="script-text">
-  "Would you be available to meet tomorrow to go over everything in detail?"
-</div>
-
-<div class="condition">[If Needs Time]</div>
-<div class="script-text">
-  "I completely understand this is a big decision. Would it be okay if I:"
-</div>
-<ol class="numbered-list">
-  <li>Send you information about all available options?</li>
-  <li>Share some testimonials from others we've helped?</li>
-  <li>Follow up tomorrow to answer any questions?</li>
-</ol>
-
+<h2>EMERGENCY RESPONSE <span class="header-time">(If Needed)</span></h2>
 <div class="condition">[If they indicate immediate urgency]</div>
 <div class="script-text">
   "Given your timeline, we should meet today if possible. I can be there at <span class="variable">[suggest time]</span> to review your documentation and discuss immediate solutions. Would that work for you?"
