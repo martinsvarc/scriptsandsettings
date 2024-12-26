@@ -154,6 +154,44 @@ export default function SetCallTargetsModal() {
   const renderTargetInputs = () => {
     return (
       <>
+        {/* Call Extension Toggle - Moved to top */}
+        <div className="mb-8">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Label
+                  htmlFor="call-extend-toggle"
+                  className="text-[#000000] text-xs sm:text-sm font-montserrat font-semibold"
+                >
+                  Allow users to extend their calls
+                </Label>
+                <div className="relative">
+                  <Info
+                    className="w-4 h-4 text-[#5b06be] cursor-pointer hover:text-[#4a05a0] transition-colors"
+                    onClick={() => setShowInfo(showInfo === 3 ? null : 3)}
+                  />
+                  {showInfo === 3 && (
+                    <InfoPopup 
+                      text="When enabled, users can request additional time during their training calls if needed." 
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Switch
+                  id="call-extend-toggle"
+                  checked={callExtendAllowed}
+                  onCheckedChange={setCallExtendAllowed}
+                  className="data-[state=checked]:bg-[#5b06be] data-[state=unchecked]:bg-gray-200 peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
+                />
+                <span className="text-sm text-gray-600 min-w-[60px]">
+                  {callExtendAllowed ? 'Enabled' : 'Disabled'}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {INITIAL_TARGET_TYPES.map((target, index) => (
           <div key={`${activeCategory}-${index}`} className="mb-8">
             <div className="space-y-4">
@@ -205,44 +243,6 @@ export default function SetCallTargetsModal() {
             </div>
           </div>
         ))}
-
-        {/* Call Extension Toggle */}
-        <div className="mb-8 pt-2 border-t border-gray-100">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Label
-                  htmlFor="call-extend-toggle"
-                  className="text-[#000000] text-xs sm:text-sm font-montserrat font-semibold"
-                >
-                  Allow users to extend their calls
-                </Label>
-                <div className="relative">
-                  <Info
-                    className="w-4 h-4 text-[#5b06be] cursor-pointer hover:text-[#4a05a0] transition-colors"
-                    onClick={() => setShowInfo(showInfo === 3 ? null : 3)}
-                  />
-                  {showInfo === 3 && (
-                    <InfoPopup 
-                      text="When enabled, users can request additional time during their training calls if needed." 
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Switch
-  id="call-extend-toggle"
-  checked={callExtendAllowed}
-  onCheckedChange={setCallExtendAllowed}
-  className="data-[state=checked]:bg-[#5b06be] data-[state=unchecked]:bg-gray-200 peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
-/>
-                <span className="text-sm text-gray-600 min-w-[60px]">
-                  {callExtendAllowed ? 'Enabled' : 'Disabled'}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
       </>
     )
   }
