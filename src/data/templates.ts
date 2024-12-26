@@ -1,5 +1,6 @@
 // src/data/templates.ts
-import { Category, Template } from '@/types'
+import { Category } from '@/types'
+
 export interface Template {
   id: string;
   name: string;
@@ -9,8 +10,6 @@ export interface Template {
 export interface TemplatesObject {
   [key in Category]: Template[];
 }
-
-export type Category = 'scripts' | 'performance-goals' | 'extended-status';
 
 const sharedStyles = `
   <style>
