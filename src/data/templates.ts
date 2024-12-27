@@ -116,12 +116,18 @@ const sharedStyles = `
     }
   </style>`;
 
-export const templates: TemplatesObject = {
+const templates: TemplatesObject = {
   'scripts': [
     {
       id: "wholesaling",
       name: "Wholesaling Property Acquisition",
-      content: `...`
+      content: `<!DOCTYPE html>
+<html>
+<head>
+${sharedStyles}
+</head>
+<body>
+<div class="script-container">
     },
     {
       id: "creative-finance",
@@ -140,12 +146,6 @@ export const templates: TemplatesObject = {
     }
   ]
 };
-<html>
-<head>
-${sharedStyles}
-</head>
-<body>
-<div class="script-container">
 <h1>High-Converting Wholesaling Property Acquisition Script</h1>
 <div class="script-preview">
   To identify motivated sellers and secure wholesale real estate deals through cold calling. Duration: 8-12 minutes
