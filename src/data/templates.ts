@@ -504,6 +504,9 @@ ${sharedStyles}
 </body>
 </html>`
   }
-];
+  ],
+  'performance-goals': [],
+  'extended-status': []
+};
 
 export default templates;
