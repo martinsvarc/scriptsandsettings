@@ -1,13 +1,12 @@
-// src/data/templates.ts
 import { Category } from '@/types'
 
-export interface Template {
+export type Template = {
   id: string;
   name: string;
   content: string;
 }
 
-export interface TemplatesObject {
+export type TemplatesObject = {
   [key in Category]: Template[];
 }
 
