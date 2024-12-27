@@ -5,8 +5,7 @@ export interface Template {
   preview: string
   fullScript: string
 }
-export type Category = 'scripts' | 'performance-goals' | 'extended-status';
-export type Category = 'acquisition' | 'partnership' | 'preforeclosure';
+
 export interface SavedScript {
   id: string
   name: string
