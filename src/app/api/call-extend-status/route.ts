@@ -11,8 +11,9 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const teamId = searchParams.get('teamId');
   
+  // If no teamId provided, return default true
   if (!teamId) {
-    return NextResponse.json({ error: 'Team ID required' }, { status: 400 });
+    return NextResponse.json({ call_extend_allowed: true });
   }
   
   try {
@@ -22,7 +23,11 @@ export async function GET(request: Request) {
       [teamId]
     );
     await client.end();
-    return NextResponse.json({ call_extend_allowed: rows[0]?.call_extend_allowed ?? true });
+    
+    // Return true if no rows found, otherwise return the stored value
+    return NextResponse.json({ 
+      call_extend_allowed: rows.length === 0 ? true : rows[0].call_extend_allowed 
+    });
   } catch (err) {
     console.error('Database error:', err);
     return NextResponse.json({ error: 'Failed to load call extend status' }, { status: 500 });
