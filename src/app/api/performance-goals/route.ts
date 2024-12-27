@@ -39,14 +39,13 @@ export async function POST(request: Request) {
       overall_performance_goal, 
       number_of_calls_average,
       call_length,
-      call_extend_allowed  // Added this field
+      call_extend_allowed = true  // Set default value to true
     } = body;
     
     if ((!teamId && !memberId) || overall_performance_goal === undefined || 
         number_of_calls_average === undefined || call_length === undefined) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
-
     const client = await getDbClient();
     
     if (teamId) {
@@ -56,7 +55,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Updated query to include call_extend_allowed
     const { rows } = await client.query(
       `INSERT INTO performance_goals 
        (team_id, member_id, overall_performance_goal, number_of_calls_average, call_length, call_extend_allowed)
