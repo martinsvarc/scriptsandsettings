@@ -1,115 +1,90 @@
-import { SavedScript, Category } from '@/types';
+'use client'
 
-interface ScriptUpdateParams {
-  name?: string;
-  content?: string;
-  isSelected?: boolean;
-  isPrimary?: boolean;
-  memberstackId?: string;
-  category?: Category;
+import React, { useState } from 'react';
+import CategorySelector from './CategorySelector';
+import { Category } from '@/types';
+import { scriptService } from '@/services/scriptService';
+
+interface ScriptUploaderProps {
+  teamId: string;
+  memberstackId: string;
 }
 
-export const scriptService = {
-  async getScripts(teamId: string, memberstackId: string, category?: Category): Promise<SavedScript[]> {
-    const params = new URLSearchParams({
-      teamId,
-      memberstackId,
-      ...(category && { category })
-    });
-    
-    const response = await fetch(`/api/scripts?${params}`);
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to fetch scripts');
-    }
-    
-    return response.json();
-  },
+const ScriptUploader: React.FC<ScriptUploaderProps> = ({ teamId, memberstackId }) => {
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [scriptContent, setScriptContent] = useState<string>('');
+  const [scriptName, setScriptName] = useState<string>('New Script');
 
-  async createScript(
-    teamId: string,
-    memberstackId: string,
-    name: string,
-    content: string,
-    category: Category,
-    isPrimary: boolean = false
-  ): Promise<SavedScript> {
-    const response = await fetch('/api/scripts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+  const handleCategorySelect = (category: Category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedCategory) {
+      alert('Please select a category first');
+      return;
+    }
+
+    try {
+      // Používáme createScript místo saveScript
+      await scriptService.createScript(
         teamId,
         memberstackId,
-        name,
-        content,
-        category,
-        isPrimary
-      })
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to create script');
+        scriptName,
+        scriptContent,
+        selectedCategory,
+        false // isPrimary defaultně nastaveno na false
+      );
+      
+      alert('Script uploaded successfully!');
+      setScriptContent('');
+      setSelectedCategory(null);
+      setScriptName('New Script');
+    } catch (error) {
+      console.error('Error uploading script:', error);
+      alert('Failed to upload script');
     }
+  };
 
-    return response.json();
-  },
+  return (
+    <div className="w-full max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">Script Uploader</h1>
+      
+      <div className="mb-6">
+        <CategorySelector
+          onSelect={handleCategorySelect}
+          selectedCategory={selectedCategory}
+        />
+      </div>
 
-  async updateScript(
-    id: string,
-    teamId: string,
-    updates: ScriptUpdateParams
-  ): Promise<SavedScript> {
-    const response = await fetch('/api/scripts', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id,
-        teamId,
-        ...updates
-      })
-    });
+      <div className="mb-4">
+        <input
+          type="text"
+          value={scriptName}
+          onChange={(e) => setScriptName(e.target.value)}
+          placeholder="Script Name"
+          className="w-full p-2 border rounded mb-4"
+        />
+      </div>
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to update script');
-    }
+      <div className="mb-6">
+        <textarea
+          value={scriptContent}
+          onChange={(e) => setScriptContent(e.target.value)}
+          placeholder="Paste your script here..."
+          className="w-full h-64 p-4 border rounded-lg"
+        />
+      </div>
 
-    return response.json();
-  },
-
-  async deleteScript(id: string, teamId: string): Promise<{ success: boolean }> {
-    const params = new URLSearchParams({ id, teamId });
-    const response = await fetch(`/api/scripts?${params}`, {
-      method: 'DELETE'
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to delete script');
-    }
-
-    return response.json();
-  },
-
-  async setPrimaryScript(
-    id: string,
-    teamId: string,
-    category: Category,
-    isPrimary: boolean
-  ): Promise<SavedScript> {
-    // First, if making a script primary, remove primary status from other scripts in the category
-    if (isPrimary) {
-      await this.updateScript(id, teamId, {
-        category,
-        isPrimary: false
-      });
-    }
-
-    // Then update the target script
-    return this.updateScript(id, teamId, {
-      isPrimary
-    });
-  }
+      <button
+        onClick={handleUpload}
+        disabled={!selectedCategory || !scriptContent}
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg disabled:opacity-50"
+      >
+        Upload Script
+      </button>
+    </div>
+  );
 };
+
+export default ScriptUploader;
