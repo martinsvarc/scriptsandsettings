@@ -4,7 +4,7 @@ import { Category, CategoryData } from '@/types'
 
 interface CategorySelectorProps {
   onSelect: (category: Category) => void;
-  selectedCategory?: Category;
+  selectedCategory?: Category | null;
 }
 
 export const categories: Record<Category, CategoryData> = {
