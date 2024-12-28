@@ -1,51 +1,30 @@
-export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure'
+// src/types/index.ts
+
+export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure';
 
 export interface Template {
-  title: string
-  preview: string
-  fullScript: string
+  title: string;        // Nadpis skriptu
+  preview: string;      // Krátký popis účelu skriptu
+  fullScript: string;   // HTML formátovaný obsah skriptu
 }
 
-export interface SavedScript {
-  id: string
-  name: string
-  content: string
-  lastEdited: string
-  isSelected: boolean
-  isPrimary: boolean
-  category: Category
+// Rozšířené typy pro různé části skriptu (pokud byste je potřebovali)
+export interface Section {
+  title: string;
+  timing: string;
+  mainText?: string;
+  conditions?: Condition[];
+  bullets?: string[];
+  numbered?: string[];
+  subsections?: Subsection[];
 }
 
-export interface CategoryData {
-  category: Category
-  scripts: SavedScript[]
+export interface Condition {
+  trigger: string;
+  response: string;
 }
 
-export interface HeaderProps {
-  step: number
-  selectedCategory: Category | null
-  isUploadMode: boolean
-  selectedTemplate: boolean
-}
-
-export interface ScriptEditorProps {
-  template: Template | null
-  uploadedContent?: string
-  editingScript: SavedScript | null
-  onSave: (content: string, scriptName?: string) => Promise<void>
-  handleGoBack: () => void
-  onRename: (scriptId: string, newName: string) => Promise<void>
-  onNameUpdate: (newName: string) => void
-}
-
-export interface ScriptFolderProps {
-  category: Category
-  scripts: SavedScript[]
-  onEdit: (script: SavedScript) => void
-  onRemove: (scriptId: string) => void
-  onSelect: (scriptId: string) => void
-  onUploadNew: () => void
-  onRename: (scriptId: string, newName: string) => void
-  onBack: () => void
-  onPrimaryChange: (scriptId: string, isPrimary: boolean) => void
+export interface Subsection {
+  title: string;
+  bullets: string[];
 }
