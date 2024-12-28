@@ -1,5 +1,11 @@
 export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure';
 
+export interface CategoryData {
+  type: Category;
+  title: string;
+  description: string;
+}
+
 export type SectionType = 'text' | 'list' | 'condition' | 'numbered' | 'heading';
 
 export interface ScriptSection {
@@ -37,7 +43,18 @@ export interface ScriptEditorProps {
   onCancel: () => void;
 }
 
+export interface FormattingToolbarProps {
+  editorRef: React.RefObject<HTMLDivElement>;
+  onRevert: () => void;
+  hasChanges: boolean;
+}
+
 export interface ScriptDisplayProps {
   script: SavedScript;
   onEdit?: () => void;
+}
+
+export interface CategorySelectorProps {
+  onSelect: (category: Category) => void;
+  selectedCategory?: Category | null;
 }
