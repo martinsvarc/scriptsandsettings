@@ -3,7 +3,11 @@
 import React, { useState, useEffect } from 'react'
 import { SavedScript, ScriptSection, SectionType } from '@/types'
 import { PlusCircle, Trash2, Clock, List, MessageSquare, Type } from 'lucide-react'
-import { v4 as uuidv4 } from 'uuid'
+
+// Pomocná funkce pro generování ID
+const generateId = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
 
 interface SectionEditorProps {
   section: ScriptSection
@@ -156,7 +160,7 @@ const ScriptEditor: React.FC<{ script: SavedScript; onSave: (script: SavedScript
 
   const addSection = (type: SectionType) => {
     const newSection: ScriptSection = {
-      id: uuidv4(),
+      id: generateId(), // Použití naší funkce pro generování ID
       type,
       title: '',
       content: '',
@@ -248,4 +252,4 @@ const ScriptEditor: React.FC<{ script: SavedScript; onSave: (script: SavedScript
   )
 }
 
-export default ScriptEditor
+export default ScriptEdit
