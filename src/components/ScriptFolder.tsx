@@ -46,6 +46,14 @@ export default function ScriptFolder({
     setEditingNameId(null)
   }
 
+  const formatDate = (dateString: string) => {
+    try {
+      return new Date(dateString).toLocaleString()
+    } catch (error) {
+      return 'Date not available'
+    }
+  }
+
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-4">
@@ -111,7 +119,7 @@ export default function ScriptFolder({
                     </button>
                   </div>
                   <p className="text-xs text-gray-400 mt-1 mb-3 font-montserrat">
-                    Last edited: {new Date(script.lastEdited).toLocaleString()}
+                    Last edited: {formatDate(script.lastEdited ?? script.updatedAt)}
                   </p>
                   <div className="flex items-center space-x-3">
                     <button
@@ -132,8 +140,8 @@ export default function ScriptFolder({
                           <input
                             type="radio"
                             name={`primary-${category}`}
-                            checked={script.isPrimary}
-                            onChange={() => handlePrimaryChange(script.id, script.isPrimary || false)}
+                            checked={script.isPrimary ?? false}
+                            onChange={() => handlePrimaryChange(script.id, script.isPrimary ?? false)}
                             className="peer hidden"
                           />
                           <div className="w-8 h-8 rounded-full bg-gray-50 group-hover:bg-[#5b06be10] transition-all duration-300 flex items-center justify-center">
