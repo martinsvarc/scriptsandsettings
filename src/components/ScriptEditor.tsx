@@ -252,4 +252,4 @@ const ScriptEditor: React.FC<{ script: SavedScript; onSave: (script: SavedScript
   )
 }
 
-export default ScriptEdit
+export default ScriptEditor
