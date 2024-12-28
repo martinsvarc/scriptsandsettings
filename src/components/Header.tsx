@@ -1,11 +1,19 @@
 'use client'
 import Image from 'next/image'
-import { Category, HeaderProps } from '@/types'
+import { Category } from '@/types'
+
+interface HeaderProps {
+  step: number;
+  selectedCategory: Category | null;
+  scriptTitle?: string;
+  selectedScriptId?: string | null;
+}
 
 export default function Header({
   step,
   selectedCategory,
-  scriptTitle
+  scriptTitle,
+  selectedScriptId
 }: HeaderProps) {
   return (
     <header className="flex justify-between items-center p-4 bg-white border-b">
