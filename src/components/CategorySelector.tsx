@@ -7,7 +7,7 @@ interface CategorySelectorProps {
   selectedCategory?: Category;
 }
 
-const categoryData: Record<Category, CategoryData> = {
+export const categories: Record<Category, CategoryData> = {
   'Wholesaling': {
     type: 'Wholesaling',
     title: 'Wholesaling Scripts',
@@ -33,7 +33,7 @@ const categoryData: Record<Category, CategoryData> = {
 const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelect, selectedCategory }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-      {Object.values(categoryData).map((category) => (
+      {Object.values(categories).map((category) => (
         <button
           key={category.type}
           onClick={() => onSelect(category.type)}
