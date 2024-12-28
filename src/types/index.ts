@@ -24,9 +24,22 @@ export interface SavedScript {
   createdAt: string;
   updatedAt: string;
   lastEdited: string;
-  isPrimary: boolean;  // Přidáno toto pole
+  isPrimary?: boolean;  // Volitelné, protože může být undefined
 }
 
+export interface ScriptFolderProps {
+  category: Category;
+  scripts: SavedScript[];
+  onEdit: (script: SavedScript) => void;
+  onRemove: (scriptId: string) => void;
+  onSelect: (scriptId: string) => void;
+  onUploadNew: () => void;
+  onRename: (scriptId: string, newName: string) => void;
+  onBack: () => void;
+  onPrimaryChange: (scriptId: string, isPrimary: boolean) => void;
+}
+
+// Ostatní rozhraní zůstávají stejná...
 export interface HeaderProps {
   step: number;
   selectedCategory: Category | null;
@@ -67,14 +80,6 @@ export interface ScriptDisplayProps {
 export interface ScriptUploaderProps {
   teamId: string;
   memberstackId: string;
-}
-
-export interface ScriptFolderProps {
-  scripts: SavedScript[];
-  onScriptSelect: (script: SavedScript) => void;
-  onScriptDelete: (scriptId: string) => Promise<void>;
-  onScriptRename: (scriptId: string, newName: string) => Promise<void>;
-  onPrimaryChange?: (scriptId: string, isPrimary: boolean) => Promise<void>;  // Přidáno toto pole
 }
 
 export interface ScriptActionsProps {
