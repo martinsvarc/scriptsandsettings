@@ -1,5 +1,3 @@
-// src/data/templates.ts
-
 import { Category, Template } from '@/types';
 
 const templates: Record<Category, Template[]> = {
