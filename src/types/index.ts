@@ -1,95 +1,43 @@
-// src/types/index.ts
-
 export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure';
 
-export interface CategoryData {
-  type: Category;
-  title: string;
-  description: string;
+export type SectionType = 'text' | 'list' | 'condition' | 'numbered' | 'heading';
+
+export interface ScriptSection {
+  id: string;
+  type: SectionType;
+  title?: string;
+  content?: string;
+  items?: string[];
+  condition?: {
+    trigger: string;
+    response: string;
+  };
+  timing?: string;
 }
 
-export interface Template {
-  title: string;
-  preview: string;
-  fullScript: string;
+export interface ScriptContent {
+  sections: ScriptSection[];
 }
 
 export interface SavedScript {
   id: string;
   name: string;
-  content: string;
+  content: ScriptContent;
   category: Category;
   teamId: string;
   memberstackId: string;
   createdAt: string;
   updatedAt: string;
-  lastEdited: string;
-  isPrimary?: boolean;  // Volitelné, protože může být undefined
+  isPrimary?: boolean;
 }
 
-export interface ScriptFolderProps {
-  category: Category;
-  scripts: SavedScript[];
-  onEdit: (script: SavedScript) => void;
-  onRemove: (scriptId: string) => void;
-  onSelect: (scriptId: string) => void;
-  onUploadNew: () => void;
-  onRename: (scriptId: string, newName: string) => void;
-  onBack: () => void;
-  onPrimaryChange: (scriptId: string, isPrimary: boolean) => void;
-}
-
-// Ostatní rozhraní zůstávají stejná...
-export interface HeaderProps {
-  step: number;
-  selectedCategory: Category | null;
-  scriptTitle?: string;
-}
-
-export interface Section {
-  title: string;
-  timing: string;
-  mainText?: string;
-  conditions?: Condition[];
-  bullets?: string[];
-  numbered?: string[];
-  subsections?: Subsection[];
-}
-
-export interface Condition {
-  trigger: string;
-  response: string;
-}
-
-export interface Subsection {
-  title: string;
-  bullets: string[];
-}
-
-export interface FormattingToolbarProps {
-  editorRef: React.RefObject<HTMLDivElement>;
-  onRevert: () => void;
-  hasChanges: boolean;
+export interface ScriptEditorProps {
+  script: SavedScript | null;
+  onSave: (script: SavedScript) => Promise<void>;
+  onCancel: () => void;
 }
 
 export interface ScriptDisplayProps {
-  script: Template;
-  content: string;
-}
-
-export interface ScriptUploaderProps {
-  teamId: string;
-  memberstackId: string;
-}
-
-export interface ScriptActionsProps {
-  onDelete: () => void;
-  onRename: (newName: string) => void;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export interface DocumentUploaderProps {
-  onUpload: (content: string) => void;
-  onError: (error: string) => void;
+  script: SavedScript;
+  onEdit?: () => void;
 }
