@@ -16,6 +16,21 @@ interface ScriptFolderProps {
   onPrimaryChange: (scriptId: string, isPrimary: boolean) => void
 }
 
+const formatDate = (date: string) => {
+  try {
+    const formattedDate = new Date(date).toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    return formattedDate;
+  } catch {
+    return 'Unknown date';
+  }
+};
+
 export default function ScriptFolder({
   category,
   scripts,
@@ -44,14 +59,6 @@ export default function ScriptFolder({
       onRename(scriptId, editingText)
     }
     setEditingNameId(null)
-  }
-
-  const formatDate = (dateString: string) => {
-    try {
-      return new Date(dateString).toLocaleString()
-    } catch (error) {
-      return 'Date not available'
-    }
   }
 
   return (
@@ -119,7 +126,7 @@ export default function ScriptFolder({
                     </button>
                   </div>
                   <p className="text-xs text-gray-400 mt-1 mb-3 font-montserrat">
-                    Last edited: {formatDate(script.lastEdited ?? script.updatedAt)}
+                    Last edited: {formatDate(script.updatedAt)}
                   </p>
                   <div className="flex items-center space-x-3">
                     <button
