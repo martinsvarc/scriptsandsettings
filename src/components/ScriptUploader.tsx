@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import CategorySelector from './CategorySelector';
 import { Category } from '@/types';
@@ -23,7 +25,14 @@ const ScriptUploader: React.FC<ScriptUploaderProps> = ({ teamId, memberstackId }
     }
 
     try {
-      await scriptService.saveScript(teamId, memberstackId, selectedCategory, scriptContent);
+      await scriptService.createScript(
+        teamId,
+        memberstackId,
+        'New Script', // Název skriptu
+        scriptContent,
+        selectedCategory,
+        false // isPrimary
+      );
       alert('Script uploaded successfully!');
       setScriptContent('');
       setSelectedCategory(null);
