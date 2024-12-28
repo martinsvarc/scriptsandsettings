@@ -1,3 +1,5 @@
+// src/types/index.ts
+
 export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure';
 
 export interface CategoryData {
@@ -21,7 +23,8 @@ export interface SavedScript {
   memberstackId: string;
   createdAt: string;
   updatedAt: string;
-  lastEdited: string;  // Přidáno toto pole
+  lastEdited: string;
+  isPrimary: boolean;  // Přidáno toto pole
 }
 
 export interface HeaderProps {
@@ -71,6 +74,7 @@ export interface ScriptFolderProps {
   onScriptSelect: (script: SavedScript) => void;
   onScriptDelete: (scriptId: string) => Promise<void>;
   onScriptRename: (scriptId: string, newName: string) => Promise<void>;
+  onPrimaryChange?: (scriptId: string, isPrimary: boolean) => Promise<void>;  // Přidáno toto pole
 }
 
 export interface ScriptActionsProps {
