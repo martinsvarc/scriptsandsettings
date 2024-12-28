@@ -21,6 +21,7 @@ export interface SavedScript {
   memberstackId: string;
   createdAt: string;
   updatedAt: string;
+  lastEdited: string;  // Přidáno toto pole
 }
 
 export interface HeaderProps {
