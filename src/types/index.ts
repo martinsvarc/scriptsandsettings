@@ -12,6 +12,12 @@ export interface Template {
   fullScript: string;
 }
 
+export interface HeaderProps {
+  step: number;
+  selectedCategory: Category | null;
+  scriptTitle?: string;
+}
+
 // Pro typy sekcí a podmínek
 export interface Section {
   title: string;
