@@ -12,13 +12,23 @@ export interface Template {
   fullScript: string;
 }
 
+export interface SavedScript {
+  id: string;
+  name: string;
+  content: string;
+  category: Category;
+  teamId: string;
+  memberstackId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface HeaderProps {
   step: number;
   selectedCategory: Category | null;
   scriptTitle?: string;
 }
 
-// Pro typy sekcí a podmínek
 export interface Section {
   title: string;
   timing: string;
@@ -37,4 +47,39 @@ export interface Condition {
 export interface Subsection {
   title: string;
   bullets: string[];
+}
+
+export interface FormattingToolbarProps {
+  editorRef: React.RefObject<HTMLDivElement>;
+  onRevert: () => void;
+  hasChanges: boolean;
+}
+
+export interface ScriptDisplayProps {
+  script: Template;
+  content: string;
+}
+
+export interface ScriptUploaderProps {
+  teamId: string;
+  memberstackId: string;
+}
+
+export interface ScriptFolderProps {
+  scripts: SavedScript[];
+  onScriptSelect: (script: SavedScript) => void;
+  onScriptDelete: (scriptId: string) => Promise<void>;
+  onScriptRename: (scriptId: string, newName: string) => Promise<void>;
+}
+
+export interface ScriptActionsProps {
+  onDelete: () => void;
+  onRename: (newName: string) => void;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface DocumentUploaderProps {
+  onUpload: (content: string) => void;
+  onError: (error: string) => void;
 }
