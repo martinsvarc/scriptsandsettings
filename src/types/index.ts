@@ -1,14 +1,18 @@
-// src/types/index.ts
-
 export type Category = 'Wholesaling' | 'Creative Finance' | 'Agent Outreach' | 'Foreclosure';
 
-export interface Template {
-  title: string;        // Nadpis skriptu
-  preview: string;      // Krátký popis účelu skriptu
-  fullScript: string;   // HTML formátovaný obsah skriptu
+export interface CategoryData {
+  type: Category;
+  title: string;
+  description: string;
 }
 
-// Rozšířené typy pro různé části skriptu (pokud byste je potřebovali)
+export interface Template {
+  title: string;
+  preview: string;
+  fullScript: string;
+}
+
+// Pro typy sekcí a podmínek
 export interface Section {
   title: string;
   timing: string;
