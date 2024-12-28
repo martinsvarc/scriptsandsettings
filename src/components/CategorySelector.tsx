@@ -3,37 +3,52 @@
 import { Category, CategoryData } from '@/types'
 
 interface CategorySelectorProps {
-  onSelect: (category: Category) => void
-  categoryData: CategoryData[]
+  onSelect: (category: Category) => void;
+  selectedCategory?: Category;
 }
 
-// Could be moved to a constants file
-export const categories: Category[] = [
-  'Wholesaling',
-  'Creative Finance', 
-  'Agent Outreach',
-  'Foreclosure'
-]
+const categoryData: Record<Category, CategoryData> = {
+  'Wholesaling': {
+    type: 'Wholesaling',
+    title: 'Wholesaling Scripts',
+    description: 'Scripts for wholesaling property acquisitions'
+  },
+  'Creative Finance': {
+    type: 'Creative Finance',
+    title: 'Creative Finance Scripts',
+    description: 'Scripts for creative financing solutions'
+  },
+  'Agent Outreach': {
+    type: 'Agent Outreach',
+    title: 'Agent Outreach Scripts',
+    description: 'Scripts for building agent relationships'
+  },
+  'Foreclosure': {
+    type: 'Foreclosure',
+    title: 'Foreclosure Scripts',
+    description: 'Scripts for pre-foreclosure situations'
+  }
+};
 
-export default function CategorySelector({ onSelect, categoryData }: CategorySelectorProps) {
+const CategorySelector: React.FC<CategorySelectorProps> = ({ onSelect, selectedCategory }) => {
   return (
-    <div className="flex flex-col items-center gap-8 w-full max-w-sm mx-auto">
-      {categories.map((category) => {
-        const hasScripts = categoryData.some(
-          data => data.category === category && data.scripts.length > 0
-        )
-        
-        return (
-          <button
-            key={category}
-            className="bg-white h-[60px] w-full px-4 rounded-[20px] font-montserrat font-semibold text-center flex items-center justify-center transition-all duration-300 text-sm sm:text-base hover:border-2 hover:border-[#5b06be] border-2 border-[#f2f3f8]"
-            onClick={() => onSelect(category)}
-            type="button"
-          >
-            <span className="truncate">{category}</span>
-          </button>
-        )
-      })}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+      {Object.values(categoryData).map((category) => (
+        <button
+          key={category.type}
+          onClick={() => onSelect(category.type)}
+          className={`p-4 rounded-lg border ${
+            selectedCategory === category.type
+              ? 'border-blue-500 bg-blue-50'
+              : 'border-gray-200 hover:border-blue-300'
+          }`}
+        >
+          <h3 className="text-lg font-semibold">{category.title}</h3>
+          <p className="text-sm text-gray-600 mt-1">{category.description}</p>
+        </button>
+      ))}
     </div>
-  )
-}
+  );
+};
+
+export default CategorySelector;
