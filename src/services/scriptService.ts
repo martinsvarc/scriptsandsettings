@@ -1,118 +1,115 @@
-import { Category, SavedScript } from '@/types';
+import { SavedScript, Category } from '@/types';
 
-interface CreateScriptParams {
-  teamId: string;
-  memberstackId: string;
-  name: string;
-  content: string;
-  category: Category;
-  isPrimary?: boolean;
-}
-
-interface UpdateScriptParams extends Partial<CreateScriptParams> {
-  id: string;
+interface ScriptUpdateParams {
+  name?: string;
+  content?: string;
   isSelected?: boolean;
+  isPrimary?: boolean;
+  memberstackId?: string;
+  category?: Category;
 }
 
 export const scriptService = {
-  // Získat všechny skripty
-  getScripts: async (teamId: string, memberstackId?: string, category?: Category) => {
-    try {
-      const params = new URLSearchParams({ teamId });
-      if (memberstackId) params.append('memberstackId', memberstackId);
-      if (category) params.append('category', category);
-
-      const response = await fetch(`/api/scripts?${params}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch scripts');
-      }
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching scripts:', error);
-      throw error;
+  async getScripts(teamId: string, memberstackId: string, category?: Category): Promise<SavedScript[]> {
+    const params = new URLSearchParams({
+      teamId,
+      memberstackId,
+      ...(category && { category })
+    });
+    
+    const response = await fetch(`/api/scripts?${params}`);
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to fetch scripts');
     }
+    
+    return response.json();
   },
 
-  // Vytvořit nový skript
-  createScript: async (
+  async createScript(
     teamId: string,
     memberstackId: string,
     name: string,
     content: string,
     category: Category,
     isPrimary: boolean = false
-  ) => {
-    try {
-      const response = await fetch('/api/scripts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          teamId,
-          memberstackId,
-          name,
-          content,
-          category,
-          isPrimary
-        }),
-      });
+  ): Promise<SavedScript> {
+    const response = await fetch('/api/scripts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        teamId,
+        memberstackId,
+        name,
+        content,
+        category,
+        isPrimary
+      })
+    });
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to create script');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error creating script:', error);
-      throw error;
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to create script');
     }
+
+    return response.json();
   },
 
-  // Aktualizovat existující skript
-  updateScript: async ({ id, teamId, ...params }: UpdateScriptParams) => {
-    try {
-      const response = await fetch('/api/scripts', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id,
-          teamId,
-          ...params
-        }),
-      });
+  async updateScript(
+    id: string,
+    teamId: string,
+    updates: ScriptUpdateParams
+  ): Promise<SavedScript> {
+    const response = await fetch('/api/scripts', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id,
+        teamId,
+        ...updates
+      })
+    });
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to update script');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error updating script:', error);
-      throw error;
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to update script');
     }
+
+    return response.json();
   },
 
-  // Smazat skript
-  deleteScript: async (id: string, teamId: string) => {
-    try {
-      const response = await fetch(`/api/scripts?id=${id}&teamId=${teamId}`, {
-        method: 'DELETE',
-      });
+  async deleteScript(id: string, teamId: string): Promise<{ success: boolean }> {
+    const params = new URLSearchParams({ id, teamId });
+    const response = await fetch(`/api/scripts?${params}`, {
+      method: 'DELETE'
+    });
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to delete script');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error deleting script:', error);
-      throw error;
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to delete script');
     }
+
+    return response.json();
+  },
+
+  async setPrimaryScript(
+    id: string,
+    teamId: string,
+    category: Category,
+    isPrimary: boolean
+  ): Promise<SavedScript> {
+    // First, if making a script primary, remove primary status from other scripts in the category
+    if (isPrimary) {
+      await this.updateScript(id, teamId, {
+        category,
+        isPrimary: false
+      });
+    }
+
+    // Then update the target script
+    return this.updateScript(id, teamId, {
+      isPrimary
+    });
   }
 };
