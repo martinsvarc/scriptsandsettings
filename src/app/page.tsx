@@ -1,48 +1,59 @@
 'use client'
-
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import ScriptUploader from '@/components/ScriptUploader'
+import SetCallTargetsModal from '@/components/SetCallTargetsModal'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { getMemberData } from "@/utils/memberstack"
 import { scriptService } from '@/services/scriptService'
 import { categories } from '@/components/CategorySelector'
-import { Category } from '@/types'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [teamId, setTeamId] = useState<string>('');
-  const [memberstackId, setMemberstackId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true)
+  const [preloadedData, setPreloadedData] = useState(null)
 
   useEffect(() => {
-    const initializeData = async () => {
+    const preloadData = async () => {
       try {
         // Get member data
-        const { teamId, memberstackId } = await getMemberData();
-        setTeamId(teamId);
-        setMemberstackId(memberstackId);
+        const { teamId, memberstackId } = await getMemberData()
 
         // Preload scripts
-        const scriptsPromises = Object.values(categories).map(category =>
-          scriptService.getScripts(teamId, memberstackId, category.type as Category)
-        );
-        await Promise.all(scriptsPromises);
+        const scriptsPromises = categories.map(category => 
+          scriptService.getScripts(teamId, memberstackId, category)
+        )
+        await Promise.all(scriptsPromises)
 
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error initializing data:', error);
-        setIsLoading(false);
+        // Preload performance goals
+        await fetch(`/api/performance-goals?teamId=${teamId}`)
+
+        // Wait additional 1 second to ensure smooth transition
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        setIsLoading(false)
+      } catch (err) {
+        console.error('Error preloading:', err)
+        // Still hide loader after 2 seconds even if there's an error
+        setTimeout(() => setIsLoading(false), 2000)
       }
-    };
+    }
 
-    initializeData();
-  }, []);
+    preloadData()
+  }, [])
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ScriptUploader teamId={teamId} memberstackId={memberstackId} />
+    <main className="min-h-screen flex items-center justify-center p-0.5">
+      <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-3 justify-center items-stretch p-3">
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <ScriptUploader />
+        </div>
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <SetCallTargetsModal />
+        </div>
+      </div>
     </main>
-  );
+  )
 }
