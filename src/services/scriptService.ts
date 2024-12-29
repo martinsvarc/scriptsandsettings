@@ -1,4 +1,3 @@
-// src/services/scriptService.ts
 import { Category, SavedScript } from '@/types';
 
 interface CreateScriptParams {
