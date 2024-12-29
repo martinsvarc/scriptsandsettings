@@ -1,90 +1,119 @@
-'use client'
+// src/services/scriptService.ts
+import { Category, SavedScript } from '@/types';
 
-import React, { useState } from 'react';
-import CategorySelector from './CategorySelector';
-import { Category } from '@/types';
-import { scriptService } from '@/services/scriptService';
-
-interface ScriptUploaderProps {
+interface CreateScriptParams {
   teamId: string;
   memberstackId: string;
+  name: string;
+  content: string;
+  category: Category;
+  isPrimary?: boolean;
 }
 
-const ScriptUploader: React.FC<ScriptUploaderProps> = ({ teamId, memberstackId }) => {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
-  const [scriptContent, setScriptContent] = useState<string>('');
-  const [scriptName, setScriptName] = useState<string>('New Script');
+interface UpdateScriptParams extends Partial<CreateScriptParams> {
+  id: string;
+  isSelected?: boolean;
+}
 
-  const handleCategorySelect = (category: Category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleUpload = async () => {
-    if (!selectedCategory) {
-      alert('Please select a category first');
-      return;
-    }
-
+export const scriptService = {
+  // Získat všechny skripty
+  getScripts: async (teamId: string, memberstackId?: string, category?: Category) => {
     try {
-      // Používáme createScript místo saveScript
-      await scriptService.createScript(
-        teamId,
-        memberstackId,
-        scriptName,
-        scriptContent,
-        selectedCategory,
-        false // isPrimary defaultně nastaveno na false
-      );
-      
-      alert('Script uploaded successfully!');
-      setScriptContent('');
-      setSelectedCategory(null);
-      setScriptName('New Script');
+      const params = new URLSearchParams({ teamId });
+      if (memberstackId) params.append('memberstackId', memberstackId);
+      if (category) params.append('category', category);
+
+      const response = await fetch(`/api/scripts?${params}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch scripts');
+      }
+      return await response.json();
     } catch (error) {
-      console.error('Error uploading script:', error);
-      alert('Failed to upload script');
+      console.error('Error fetching scripts:', error);
+      throw error;
     }
-  };
+  },
 
-  return (
-    <div className="w-full max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Script Uploader</h1>
-      
-      <div className="mb-6">
-        <CategorySelector
-          onSelect={handleCategorySelect}
-          selectedCategory={selectedCategory}
-        />
-      </div>
+  // Vytvořit nový skript
+  createScript: async (
+    teamId: string,
+    memberstackId: string,
+    name: string,
+    content: string,
+    category: Category,
+    isPrimary: boolean = false
+  ) => {
+    try {
+      const response = await fetch('/api/scripts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          teamId,
+          memberstackId,
+          name,
+          content,
+          category,
+          isPrimary
+        }),
+      });
 
-      <div className="mb-4">
-        <input
-          type="text"
-          value={scriptName}
-          onChange={(e) => setScriptName(e.target.value)}
-          placeholder="Script Name"
-          className="w-full p-2 border rounded mb-4"
-        />
-      </div>
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to create script');
+      }
 
-      <div className="mb-6">
-        <textarea
-          value={scriptContent}
-          onChange={(e) => setScriptContent(e.target.value)}
-          placeholder="Paste your script here..."
-          className="w-full h-64 p-4 border rounded-lg"
-        />
-      </div>
+      return await response.json();
+    } catch (error) {
+      console.error('Error creating script:', error);
+      throw error;
+    }
+  },
 
-      <button
-        onClick={handleUpload}
-        disabled={!selectedCategory || !scriptContent}
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg disabled:opacity-50"
-      >
-        Upload Script
-      </button>
-    </div>
-  );
+  // Aktualizovat existující skript
+  updateScript: async ({ id, teamId, ...params }: UpdateScriptParams) => {
+    try {
+      const response = await fetch('/api/scripts', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          teamId,
+          ...params
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to update script');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error updating script:', error);
+      throw error;
+    }
+  },
+
+  // Smazat skript
+  deleteScript: async (id: string, teamId: string) => {
+    try {
+      const response = await fetch(`/api/scripts?id=${id}&teamId=${teamId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to delete script');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error deleting script:', error);
+      throw error;
+    }
+  }
 };
-
-export default ScriptUploader;
