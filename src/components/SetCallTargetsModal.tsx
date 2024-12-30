@@ -42,7 +42,7 @@ const INITIAL_TARGET_TYPES: TargetConfig[] = [
 
 export default function SetCallTargetsModal() {
   const [activeCategory] = useState<'intermediate' | 'expert'>('intermediate')
-  const [targets, setTargets] = useState<string[]>(INITIAL_TARGET_TYPES.map(() => ""))
+  const [targets, setTargets] = useState<string[]>(["50", "3", "10"])
   const [callExtendAllowed, setCallExtendAllowed] = useState(true)
   const [showInfo, setShowInfo] = useState<number | null>(null)
   const [teamId, setTeamId] = useState<string | null>(null)
